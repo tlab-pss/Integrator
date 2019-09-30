@@ -1,0 +1,48 @@
+version: "3"
+services:
+  pd_mysql:
+    image: mysql:8.0
+    restart: unless-stopped
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_DATABASE: pss
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - 3306:3306
+    volumes:
+      - ./PersonalDataRepository/db/mysql_data:/var/lib/mysql
+
+  pd_ongo:
+    image: mongo
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+    ports:
+      - 27017:27017
+    volumes:
+      - ./PersonalDataRepository/db:/data/db/mongo_data
+      - ./PersonalDataRepository/configdb:/data/configdb
+
+  pd:
+    build: ./PersonalDataRepository
+    environment:
+      MYSQL_DATABASE: pss
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_HOST: pd_mysql
+    ports:
+      - "8080:8080"
+    depends_on:
+      - pd_mysql
+    links:
+      - pd_mysql
+    tty: true
+
+  pa:
+    build: ./PartnerAssistant
+    environment:
+      - GO_ENV=develop
+    volumes:
+      - ./PartnerAssistant/:/go/src
+    ports:
+      - "8888:8080"

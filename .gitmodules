@@ -1,0 +1,3 @@
+[submodule "PartnerAssistant"]
+	path = PartnerAssistant
+	url = https://github.com/tlab-pss/PartnerAssistant.git
