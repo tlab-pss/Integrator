@@ -1,3 +1,6 @@
 [submodule "PartnerAssistant"]
 	path = PartnerAssistant
 	url = https://github.com/tlab-pss/PartnerAssistant.git
+[submodule "PersonalDataRepository"]
+	path = PersonalDataRepository
+	url = https://github.com/tlab-pss/PersonalDataRepository.git
