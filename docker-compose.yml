@@ -1,0 +1,37 @@
+version: "3"
+services:
+  pd_mongo:
+    image: mongo
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: pss
+    ports:
+      - 27017:27017
+    volumes:
+      - ./PersonalDataRepository/db/mongo/mongo_data:/data/db
+      - ./PersonalDataRepository/db/mongo/init/:/docker-entrypoint-initdb.d/
+
+  pd:
+    build: ./PersonalDataRepository
+    environment:
+      MONGO_DATABASE: pss
+      MONGO_USER: user
+      MONGO_PASSWORD: password
+    ports:
+      - "8080:8080"
+    depends_on:
+      - pd_mongo
+    links:
+      - pd_mongo
+    tty: true
+
+  pa:
+    build: ./PartnerAssistant
+    environment:
+      - GO_ENV=develop
+    volumes:
+      - ./PartnerAssistant/:/go/src
+    ports:
+      - "8888:8080"
