@@ -28,7 +28,9 @@ services:
     tty: true
 
   pa:
-    build: ./PartnerAssistant
+    build:
+      context: ./PartnerAssistant
+      target: develop
     environment:
       - GO_ENV=develop
     volumes:
