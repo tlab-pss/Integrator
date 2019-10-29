@@ -13,9 +13,10 @@ This repository is wake up PSS.
 ## Update submodule
 
 ```sh
-  cd <PartinerAssistant | PersonalDataRepository>
+  cd <PartnerAssistant | PersonalDataRepository | RecommendSystem>
   git checkout <Branch name>
+  git pull
   cd ..
-  git add <PartinerAssistant | PersonalDataRepository>
-  git commit -m "Update submodule: <PartinerAssistant | PersonalDataRepository>"
+  git add <PartnerAssistant | PersonalDataRepository | RecommendSystem>
+  git commit -m "Update submodule: <PartinerAssistant | PersonalDataRepository| RecommendSystem>"
 ```
