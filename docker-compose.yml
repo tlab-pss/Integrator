@@ -1,4 +1,4 @@
-version: "3"
+version: "3.4"
 services:
   pd_mongo:
     image: mongo
@@ -38,11 +38,11 @@ services:
 
   rs:
     build:
-      context: .
-      target: release
+      context: ./RecommendSystem
+      target: develop
     environment:
       - GO_ENV=production
     volumes:
-      - ./:/go/src
+      - ./RecommendSystem/:/go/src
     ports:
       - "8087:8080"
