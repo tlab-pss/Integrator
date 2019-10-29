@@ -4,6 +4,3 @@
 [submodule "PersonalDataRepository"]
 	path = PersonalDataRepository
 	url = https://github.com/tlab-pss/PersonalDataRepository.git
-[submodule "RecommendSystem"]
-	path = RecommendSystem
-	url = git@github.com:tlab-pss/RecommendSystem.git
