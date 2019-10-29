@@ -35,3 +35,14 @@ services:
       - ./PartnerAssistant/:/go/src
     ports:
       - "8888:8080"
+
+  rs:
+    build:
+      context: .
+      target: release
+    environment:
+      - GO_ENV=production
+    volumes:
+      - ./:/go/src
+    ports:
+      - "8087:8080"
