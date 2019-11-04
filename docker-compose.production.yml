@@ -19,8 +19,6 @@ services:
       MONGO_DATABASE: pss
       MONGO_USER: user
       MONGO_PASSWORD: password
-    ports:
-      - "8080:8080"
     depends_on:
       - pd_mongo
     links:
@@ -28,7 +26,9 @@ services:
     tty: true
 
   pa:
-    build: ./PartnerAssistant
+    build:
+      context: ./PartnerAssistant
+      target: release
     environment:
       - GO_ENV=production
     volumes:
@@ -44,5 +44,3 @@ services:
       - GO_ENV=production
     volumes:
       - ./RecommendSystem/:/go/src
-    ports:
-      - "8087:8080"
